@@ -14,9 +14,9 @@ import openvino.runtime as ov
 
 import rospy
 from rospy.numpy_msg import numpy_msg
-from sk_mmwave_ros.msg import RadarFrame
-from sk_mmwave_ros.msg import RadarFrameStamped
-from sk_mmwave_ros.msg import RadarFrameFull
+from xwr_raw_ros.msg import RadarFrame
+from xwr_raw_ros.msg import RadarFrameStamped
+from xwr_raw_ros.msg import RadarFrameFull
 from xwr_raw.radar_config import RadarConfig
 
 import xwr_raw.dsp as dsp

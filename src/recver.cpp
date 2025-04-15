@@ -17,7 +17,7 @@
 #include <ros/ros.h>
 #include <ros/package.h>
 #include "std_msgs/String.h"
-#include "sk_mmwave_ros/RadarFrameFull.h"
+#include "xwr_raw_ros/RadarFrameFull.h"
 
 using namespace std;
 
@@ -179,7 +179,7 @@ int main(int argc, char** argv) {
     }
     cout << endl;
 
-    ros::Publisher pub = nh.advertise<sk_mmwave_ros::RadarFrameFull>("radar_data", 1);
+    ros::Publisher pub = nh.advertise<xwr_raw_ros::RadarFrameFull>("radar_data", 1);
 
 	// socket address used for the server
 	struct sockaddr_in server_address;
@@ -214,7 +214,7 @@ int main(int argc, char** argv) {
     FrameBuffer frame_buffer(2*frame_size, frame_size);
     
 	// run indefinitely
-    sk_mmwave_ros::RadarFrameFull frame;
+    xwr_raw_ros::RadarFrameFull frame;
     frame.platform       = platform;
     frame.adc_output_fmt = adc_output_fmt;
     frame.range_bias     = range_bias;

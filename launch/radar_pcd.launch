@@ -13,15 +13,15 @@
     <arg name="radar0_host_data_port"  default="4098"/>
 
     <group ns="$(arg radar0)">
-        <node name="dca" pkg="sk_mmwave_ros" type="dca.py" required="true"  output="screen"
-            args="$(find sk_mmwave_ros)/$(arg radar0_cfg)
+        <node name="dca" pkg="xwr_raw_ros" type="dca.py" required="true"  output="screen"
+            args="$(find xwr_raw_ros)/$(arg radar0_cfg)
                   --dca_ip=$(arg radar0_dca_ip) 
                   --dca_cmd_port=$(arg radar0_dca_cmd_port) 
                   --host_ip=$(arg radar0_host_ip) 
                   --host_cmd_port=$(arg radar0_host_cmd_port) 
                   --host_data_port=$(arg radar0_host_data_port)"/>
 
-        <!-- <node name="xwr_visualizer" pkg="sk_mmwave_ros" type="visda.py" args="" output="screen"/> -->
+        <!-- <node name="xwr_visualizer" pkg="xwr_raw_ros" type="visda.py" args="" output="screen"/> -->
 
         <node pkg="ti_mmwave_rospkg" type="ti_mmwave_rospkg" name="ti_mmwave" output="screen">
             <param name="command_port" value="$(arg radar0_cmd_tty)"  />
@@ -37,7 +37,7 @@
 
         <!-- mmWaveQuickConfig node (terminates after configuring mmWave sensor) -->
         <node pkg="ti_mmwave_rospkg" type="mmWaveQuickConfig" name="ti_mmwave_config" 
-            args="$(find sk_mmwave_ros)/$(arg radar0_cfg)" output="screen" >
+            args="$(find xwr_raw_ros)/$(arg radar0_cfg)" output="screen" >
             <param name="mmWaveCLI_name" value="/$(arg radar0)/mmWaveCLI" />
         </node>
 

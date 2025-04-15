@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(sk_mmwave_ros)
+project(xwr_raw_ros)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11 -O3)
@@ -121,7 +121,7 @@ include_directories(include ${catkin_INCLUDE_DIRS}
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/sk_mmwave_ros.cpp
+#   src/${PROJECT_NAME}/xwr_raw_ros.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -194,7 +194,7 @@ install(TARGETS recver
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_sk_mmwave_ros.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_xwr_raw_ros.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

@@ -19,9 +19,9 @@ import openvino.runtime as ov
 import rospy
 import rospkg
 from rospy.numpy_msg import numpy_msg
-from sk_mmwave_ros.msg import RadarFrame
-from sk_mmwave_ros.msg import RadarFrameStamped
-from sk_mmwave_ros.msg import RadarFrameFull
+from xwr_raw_ros.msg import RadarFrame
+from xwr_raw_ros.msg import RadarFrameStamped
+from xwr_raw_ros.msg import RadarFrameFull
 from xwr_raw.radar_config import RadarConfig
 
 from geometry_msgs.msg import Pose2D
@@ -279,7 +279,7 @@ if __name__ == '__main__':
     if args.saved_model_path:
         core = ov.Core()
         rospack = rospkg.RosPack()
-        flow_path = os.path.join(rospack.get_path('sk_mmwave_ros'), 'models', args.saved_model_path)
+        flow_path = os.path.join(rospack.get_path('xwr_raw_ros'), 'models', args.saved_model_path)
         flow_model = core.compile_model(flow_path, "CPU")
         pub_flow = rospy.Publisher('flow', Pose2D, queue_size=1)
     else:

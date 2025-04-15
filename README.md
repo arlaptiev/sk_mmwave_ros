@@ -1,4 +1,4 @@
-# sk_mmwave_ros
+# xwr_raw_ros
 
 This repository contains a **ROS node for real-time raw ADC I/Q sample data capture and processing from TI AWR/IWR radar EVMs + DCA1000EVM combo.** 
 It was developed for and used in the following papers:
@@ -11,7 +11,7 @@ It was developed for and used in the following papers:
 > Emerson Sie, Xinyu Wu, Heyu Guo, Deepak Vasisht
 > *ACM International Conference on Mobile Systems and Services (**MobiSys**), 2024*
 
-https://github.com/ConnectedSystemsLab/sk_mmwave_ros/assets/14133352/1cef32bf-e6d5-48c4-a3ba-73317eed2fce
+https://github.com/ConnectedSystemsLab/xwr_raw_ros/assets/14133352/1cef32bf-e6d5-48c4-a3ba-73317eed2fce
 
 ## Features
 - Tested on **ROS Melodic/Noetic**, **Ubuntu 18.04/20.04**.
@@ -47,12 +47,12 @@ mkdir -p ~/catkin_ws/src
 ```
 3. Clone repository.
 ```bash
-cd ~/catkin_ws/src && git clone https://github.com/ConnectedSystemsLab/sk_mmwave_ros.git
+cd ~/catkin_ws/src && git clone https://github.com/ConnectedSystemsLab/xwr_raw_ros.git
 ```
 4. Install ROS and Python dependencies.
 ```bash
 cd ..
-rosdep install --from-paths src --ignore-src -iry && pip install -r src/sk_mmwave_ros/requirements.txt
+rosdep install --from-paths src --ignore-src -iry && pip install -r src/xwr_raw_ros/requirements.txt
 ```
 5. Build node.
 ```bash 
@@ -73,7 +73,7 @@ Make sure to logout and log back in so usermod takes effect.
   
 9. Edit and launch a ```.launch``` file e.g.
 ```bash 
-roslaunch sk_mmwave_ros radar_visra.launch
+roslaunch xwr_raw_ros radar_visra.launch
 ```
 Make sure the parameters (e.g. IP addresses and ports, serial ports, radar config) in the ```.launch``` file are correct. You should see an output similar to ```example.mp4``` if using xWR1843.
 

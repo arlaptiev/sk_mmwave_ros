@@ -13,9 +13,9 @@ import numpy as np
 import rospy
 import rospkg
 from rospy.numpy_msg import numpy_msg
-from sk_mmwave_ros.msg import RadarFrame
-from sk_mmwave_ros.msg import RadarFrameStamped
-from sk_mmwave_ros.msg import RadarFrameFull
+from xwr_raw_ros.msg import RadarFrame
+from xwr_raw_ros.msg import RadarFrameStamped
+from xwr_raw_ros.msg import RadarFrameFull
 from xwr_raw.radar_config import RadarConfig
 from xwr_raw.radar_pub import RadarPub
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
     # Parse and publish config file.
     rospack = rospkg.RosPack()
-    with open(os.path.join(rospack.get_path('sk_mmwave_ros'), args.cfg), 'r') as f:
+    with open(os.path.join(rospack.get_path('xwr_raw_ros'), args.cfg), 'r') as f:
         cfg = f.readlines()
     radar_config = RadarConfig(cfg)
     rospy.set_param('radar_config', dict(**radar_config))

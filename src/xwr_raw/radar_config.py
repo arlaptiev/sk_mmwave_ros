@@ -190,6 +190,7 @@ class RadarConfig(OrderedDict):
             ('range_max' , range_max),
             ('range_res' , range_res),
         ])
+    
 
 if __name__ == '__main__':
     with open('configs/6843aop/6843aop_doppler_v1.cfg', 'r') as f:

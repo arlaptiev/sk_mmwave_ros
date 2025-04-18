@@ -2,23 +2,14 @@
 
 <launch>
     <arg name="radar1"                 default="radar1"/>
-    <arg name="radar1_frame_size"      default="1024"/>             <!-- get from lua script -->
-    <arg name="radar1_cmd_tty"         default="/dev/tty1443_00"/>
-    <arg name="radar1_dca_ip"          default="192.168.33.180"/>
-    <arg name="radar1_dca_cmd_port"    default="4096"/>
-    <arg name="radar1_host_ip"         default="192.168.33.30"/>
-    <arg name="radar1_host_cmd_port"   default="4096"/>
+    <arg name="radar1_lua"             default="configs/1443/1443_mmwavestudio_config.lua"/>
+    <arg name="radar1_host_ip"         default="172.22.244.187"/>
     <arg name="radar1_host_data_port"  default="4098"/>
 
     <group ns="$(arg radar1)">
         <node name="xwr_radar" pkg="xwr_raw_ros" type="dca_data.py" required="true"  output="screen"
-            args="
-            --frame_size=$(arg radar1_frame_size)  
-            --cmd_tty=$(arg radar1_cmd_tty)  
-            --dca_ip=$(arg radar1_dca_ip) 
-            --dca_cmd_port=$(arg radar1_dca_cmd_port) 
+            args="$(arg radar1_lua)     
             --host_ip=$(arg radar1_host_ip) 
-            --host_cmd_port=$(arg radar1_host_cmd_port) 
             --host_data_port=$(arg radar1_host_data_port)"/>
 
         <!-- <node name="xwr_visualizer" pkg="xwr_raw_ros" type="visra.py" args="" output="screen"/> -->

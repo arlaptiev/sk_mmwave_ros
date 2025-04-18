@@ -16,19 +16,15 @@ from rospy.numpy_msg import numpy_msg
 from xwr_raw_ros.msg import RadarFrame
 from xwr_raw_ros.msg import RadarFrameStamped
 from xwr_raw_ros.msg import RadarFrameFull
-from xwr_raw.radar_config import RadarConfig
-from xwr_raw.radar_pub import DCADataPub
+from xwr_raw.radar_lua_config import LuaRadarConfig
+from xwr_raw.dca_data_pub import DCADataPub
 
 if __name__ == '__main__':
 
     # Read path to config file.
     parser = argparse.ArgumentParser()
-    parser.add_argument('--frame_size',     default='1024',             help="Framze size (as per lua configurations).")
-    parser.add_argument('--cmd_tty',        default='/dev/ttyACM0',     help='CMD TTY of radar.')
-    parser.add_argument('--dca_ip',         default='192.168.33.180',   help='IP address of DCA1000.')
-    parser.add_argument('--dca_cmd_port',   default=4096,               help='CMD port of DCA1000.')
+    parser.add_argument('lua',  help="Path to LUA configuration file for radar")
     parser.add_argument('--host_ip',        default='192.168.33.30',    help='IP address of host.')
-    parser.add_argument('--host_cmd_port',  default=4096,               help='CMD port of host.')
     parser.add_argument('--host_data_port', default=4098,               help='Data port of host.')
     args = parser.parse_args(rospy.myargv()[1:])
 
@@ -42,23 +38,19 @@ if __name__ == '__main__':
     #                             queue_size=1)
 
     # Parse and publish config file.
-    # rospack = rospkg.RosPack()
-    # with open(os.path.join(rospack.get_path('xwr_raw_ros'), args.cfg), 'r') as f:
-    #     cfg = f.readlines()
-    # radar_config = RadarConfig(cfg)
+    rospack = rospkg.RosPack()
+    with open(os.path.join(rospack.get_path('xwr_raw_ros'), args.lua), 'r') as f:
+        lua = f.readlines()
+    radar_config = LuaRadarConfig(lua)
     # rospy.set_param('radar_config', dict(**radar_config))
 
     # Extract params from config.
-    radar_params = {'frame_size'     : int(args.frame_size),}
-    rospy.set_param('radar_params', dict(**radar_params))
+    radar_params = radar_config.get_params()
+    # rospy.set_param('radar_params', dict(**radar_params))
 
     # Configure and start radar capture.
-    radar = DCADataPub( frame_size     = int(args.frame_size),
-                        cmd_tty        = args.cmd_tty,
-                        dca_ip         = args.dca_ip,
-                        dca_cmd_port   = int(args.dca_cmd_port),
+    radar = DCADataPub( lua,
                         host_ip        = args.host_ip,
-                        host_cmd_port  = int(args.host_cmd_port),
                         host_data_port = int(args.host_data_port))
 
     # rospy.on_shutdown(lambda : radar.close())
